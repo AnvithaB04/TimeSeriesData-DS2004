@@ -23,7 +23,7 @@ weather_data = []
 # Fetch data for each winter season (December - February)
 for year in range(START_YEAR, END_YEAR):
     start_date = datetime(year, 12, 1)
-    end_date = datetime(year + 1, 2, 28)
+    end_date = datetime(year + 1, 3, 31)
 
     # Fetch historical daily data
     data = Daily(station_id, start=start_date, end=end_date)
