@@ -4,7 +4,7 @@ from datetime import datetime
 
 # Define location 
 LOCATION_NAME = "Charlottesville"
-START_YEAR = 2016
+START_YEAR = 2000
 END_YEAR = 2025
 
 # Get the closest weather station
