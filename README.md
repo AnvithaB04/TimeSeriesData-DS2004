@@ -37,7 +37,7 @@ pip install -r requirements.txt
 <!-- Section 2: Project Folder Structure -->
 ## Section 2: Software & Platform
 
-TTIMESERIESDATA-DS4002/  
+TIMESERIESDATA-DS4002/  
 ├── DATA/  
 ├── OUTPUT/  
 ├── SCRIPTS/  
