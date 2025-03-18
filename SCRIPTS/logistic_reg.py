@@ -5,9 +5,13 @@ from scipy import stats
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Load and sort the CSV file
-file_path = "./DATA/charlottesville_weather.csv"
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, "..", "DATA", "charlottesville_weather.csv")
 df = pd.read_csv(file_path, parse_dates=['time'])
 df.sort_values('time', inplace=True)
 
@@ -70,8 +74,8 @@ if merged_df['Spring_Arrival'].nunique() < 2:
     exit()
 
 # Save merged data to CSV
-merged_df.to_csv("merged_charlottesville_weather.csv", index=False)
-print("Merged data saved to merged_charlottesville_weather.csv")
+merged_df.to_csv("logReg_charlottesville_weather.csv", index=False)
+print("Merged data saved to logReg_charlottesville_weather.csv")
 
 # Prepare features and target for logistic regression
 feature_cols = ['AvgTemp_Mean', 'AvgTemp_Min', 'AvgTemp_Max', 
@@ -89,3 +93,16 @@ X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, 
 clf = LogisticRegression(max_iter=1000, class_weight='balanced')
 clf.fit(X_train, y_train)
 print("Logistic Regression model trained successfully.")
+
+# Coefficients Bar Chart
+coef_df = pd.DataFrame({
+    'Feature': feature_cols,
+    'Coefficient': clf.coef_[0]
+})
+plt.figure(figsize=(8,6))
+sns.barplot(data=coef_df, x='Coefficient', y='Feature')
+plt.title("Logistic Regression Coefficients")
+plt.xlabel("Coefficient Value")
+plt.ylabel("Feature")
+plt.tight_layout()
+plt.show()
