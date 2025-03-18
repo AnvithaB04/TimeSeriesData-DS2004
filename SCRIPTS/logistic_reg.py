@@ -21,6 +21,9 @@ numeric_cols = ['Precipitation (mm)', 'Wind Direction (°)', 'Wind Speed (km/h)'
 df[numeric_cols] = df[numeric_cols].interpolate(method='linear')
 df.bfill(inplace=True)
 
+df.to_csv("cleaned_charlottesville_weather.csv", index=False)
+print("Merged data saved to cleaned_charlottesville_weather.csv")
+
 # Create Season_Year: December stays in the current year; Jan, Feb, Mar belong to the previous year.
 df['Month'] = df['time'].dt.month
 df['Season_Year'] = df['time'].dt.year
