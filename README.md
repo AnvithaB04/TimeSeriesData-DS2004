@@ -62,7 +62,8 @@ TIMESERIESDATA-DS2004/
 ├── README.md
 ├── requirements.txt
 
-├── DATA/
+TIMESERIESDATA-DS2004/
+ ├── DATA/
  │   ├── charlottesville_weather.csv
  │   ├── cleaned_charlottesville_weather.csv
  │   └── merged_charlottesville_weather.csv
