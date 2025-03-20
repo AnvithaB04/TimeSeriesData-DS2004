@@ -35,7 +35,7 @@ To install the necessary dependencies, run:
 pip install -r requirements.txt
 ```
 <!-- Section 2: Project Folder Structure -->
-## Section 2: Software & Platform
+## Section 2: A Map of your documentation
 
 TIMESERIESDATA-DS2004/
 ├── DATA/
