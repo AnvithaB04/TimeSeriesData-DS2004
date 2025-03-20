@@ -60,7 +60,7 @@ TIMESERIESDATA-DS2004/
 │
 ├── LICENSE
 ├── README.md
-├── requirements.txt
+└── requirements.txt
 
 <!-- Section 3: Instructions for Reproducing Results -->
 ## Section 3: Instructions for Reproducing Results
