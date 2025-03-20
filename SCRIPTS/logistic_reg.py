@@ -77,8 +77,8 @@ if merged_df['Spring_Arrival'].nunique() < 2:
     exit()
 
 # Save merged data to CSV
-merged_df.to_csv("logReg_charlottesville_weather.csv", index=False)
-print("Merged data saved to logReg_charlottesville_weather.csv")
+merged_df.to_csv("merged_charlottesville_weather.csv", index=False)
+print("Merged data saved to merged_charlottesville_weather.csv")
 
 # Prepare features and target for logistic regression
 feature_cols = ['AvgTemp_Mean', 'AvgTemp_Min', 'AvgTemp_Max', 
