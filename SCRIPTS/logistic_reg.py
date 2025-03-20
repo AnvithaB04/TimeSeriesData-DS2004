@@ -8,6 +8,7 @@ from sklearn.preprocessing import StandardScaler
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
+from imblearn.over_sampling import SMOTE  # Import SMOTE
 
 # Load and sort the CSV file
 current_dir = os.path.dirname(__file__)
@@ -72,6 +73,7 @@ merged_df = pd.merge(season_agg, spring_arrivals, on='Season_Year', how='inner')
 
 print("Spring_Arrival distribution:")
 print(merged_df['Spring_Arrival'].value_counts())
+
 if merged_df['Spring_Arrival'].nunique() < 2:
     print("ERROR: Only one class found in the target variable. Adjust your threshold or data range.")
     exit()
@@ -90,7 +92,46 @@ y = merged_df['Spring_Arrival']
 # Scale features and split data
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
+# Convert X_scaled back to DataFrame
+X_scaled_df = pd.DataFrame(X_scaled, index=y.index, columns=feature_cols)
+
+# Ensure at least one `1` in the test set
+positive_indices = y[y == 1].index.tolist()
+negative_indices = y[y == 0].index.tolist()
+
+if len(positive_indices) < 2:
+    print("Not enough positive examples to guarantee a balanced test set!")
+else:
+    # Reserve one `1` for the test set
+    test_positive_idx = [positive_indices[0]]
+    remaining_positive_idx = positive_indices[1:]  # Keep at least one `1` in training
+
+    # Remove the reserved `1` from the remaining dataset
+    X_remaining = X_scaled_df.drop(index=test_positive_idx)
+    y_remaining = y.drop(index=test_positive_idx)
+
+    # Check if `y_remaining` has enough `1s` for stratified splitting
+    if sum(y_remaining == 1) >= 2:
+        stratify_option = y_remaining
+    else:
+        stratify_option = None  # Avoid stratification if too few `1s`
+
+    # Perform train-test split on the remaining dataset
+    X_train, X_test_temp, y_train, y_test_temp = train_test_split(
+        X_remaining, y_remaining, test_size=0.2, random_state=42, stratify=stratify_option
+    )
+
+    # Manually add the `1` we reserved earlier to the test set
+    X_test = np.vstack([X_test_temp, X_scaled_df.loc[test_positive_idx].values])
+    y_test = np.append(y_test_temp, 1)
+
+    # Print test set distribution
+    print("Test Set Class Distribution After Fix:")
+    print(pd.Series(y_test).value_counts())
+
+print("Training Set Class Distribution After SMOTE:")
+print(pd.Series(y_train).value_counts())
 
 # Train logistic regression model 
 clf = LogisticRegression(max_iter=1000, class_weight='balanced')
@@ -108,4 +149,56 @@ plt.title("Logistic Regression Coefficients")
 plt.xlabel("Coefficient Value")
 plt.ylabel("Feature")
 plt.tight_layout()
+plt.show()
+
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix, classification_report
+
+# Predict on the test set
+y_pred = clf.predict(X_test)
+y_pred_proba = clf.predict_proba(X_test)[:, 1]  # Get probability estimates
+
+# Compute metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, zero_division=1)
+recall = recall_score(y_test, y_pred, zero_division=1)
+f1 = f1_score(y_test, y_pred, zero_division=1)
+roc_auc = roc_auc_score(y_test, y_pred_proba)
+
+# Print performance metrics
+print(f"Model Performance:\n"
+      f"Accuracy: {accuracy:.2f}\n"
+      f"Precision: {precision:.2f}\n"
+      f"Recall: {recall:.2f}\n"
+      f"F1 Score: {f1:.2f}\n"
+      f"ROC AUC: {roc_auc:.2f}\n")
+
+# Confusion Matrix
+conf_matrix = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:")
+print(conf_matrix)
+
+# Classification Report
+print("Classification Report:")
+print(classification_report(y_test, y_pred, zero_division=1))
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+
+# Define labels
+labels = ["No Early Spring (0)", "Early Spring (1)"]
+
+# Create confusion matrix
+conf_matrix = confusion_matrix(y_test, y_pred)
+
+# Plot heatmap
+plt.figure(figsize=(6,5))
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap="Blues", xticklabels=labels, yticklabels=labels)
+
+# Add labels
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.title("Confusion Matrix")
+
+# Show plot
 plt.show()
