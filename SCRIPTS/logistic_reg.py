@@ -1,3 +1,14 @@
+"""
+--------------------------------------------------------------------------------
+logistic_reg.py
+--------------------------------------------------------------------------------
+This script loads cleaned winter weather data for Charlottesville, aggregates
+it by season (Dec–Mar), defines a binary target (Spring_Arrival), and trains
+a logistic regression model to classify whether spring arrives by March 20
+(based on a temperature threshold).
+--------------------------------------------------------------------------------
+"""
+
 import pandas as pd
 import numpy as np
 from datetime import datetime

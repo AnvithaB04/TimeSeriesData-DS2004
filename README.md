@@ -44,14 +44,15 @@ TIMESERIESDATA-DS2004/
 │   └── merged_charlottesville_weather.csv
 │
 ├── OUTPUT/
-│   ├── average_temperatures_over_time.png
-│   ├── average_temperatures.png
-│   ├── confusion_matrix.png
-│   ├── daily_temperature_metrics.png
-│   ├── LogReg_Coefficients.png
-│   ├── predicted_march_2025_values.png
-│   └── weather-variables_heatmap.png
-│
+│   ├── DatasetGraphics
+│   │    ├── daily_temperature_metrics.png
+│   │    └── weather-variables_heatmap.png
+│   └── Results
+│   │   ├── average_temperatures_over_time.png
+│   │   ├── average_temperatures.png
+│   │   ├── confusion_matrix.png
+│   │   ├── log_reg_coefficients.png
+│   │   └── predicted_march_2025_values.png
 ├── SCRIPTS/
 │   ├── arima_script.py
 │   ├── logistic_reg.py

@@ -1,3 +1,12 @@
+"""
+--------------------------------------------------------------------------------
+arima_script.py
+--------------------------------------------------------------------------------
+This script loads and preprocesses temperature data for Charlottesville,
+then fits a seasonal ARIMA model to forecast future temperatures.
+--------------------------------------------------------------------------------
+"""
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt

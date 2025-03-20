@@ -1,3 +1,14 @@
+"""
+--------------------------------------------------------------------------------
+web_scraper.py
+--------------------------------------------------------------------------------
+This script fetches daily historical weather data for Charlottesville 
+from the Meteostat API for winter months (Dec–Feb plus partial March).
+It processes the data (renames columns, converts Celsius to Fahrenheit, etc.)
+and saves it to a CSV file named 'charlottesville_weather.csv'.
+--------------------------------------------------------------------------------
+"""
+
 import pandas as pd
 from meteostat import Daily, Stations
 from datetime import datetime
