@@ -44,10 +44,10 @@ TIMESERIESDATA-DS2004/
 │   └── merged_charlottesville_weather.csv
 │
 ├── OUTPUT/
-│   ├── DatasetGraphics
+│   ├── DatasetGraphics/
 │   │    ├── daily_temperature_metrics.png
 │   │    └── weather-variables_heatmap.png
-│   └── Results
+│   └── Results/
 │   │   ├── average_temperatures_over_time.png
 │   │   ├── average_temperatures.png
 │   │   ├── confusion_matrix.png
