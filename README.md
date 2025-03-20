@@ -62,29 +62,6 @@ TIMESERIESDATA-DS2004/
 ├── README.md
 ├── requirements.txt
 
-TIMESERIESDATA-DS2004/
- ├── DATA/
- │   ├── charlottesville_weather.csv
- │   ├── cleaned_charlottesville_weather.csv
- │   └── merged_charlottesville_weather.csv
- │
- ├── OUTPUT/
- │   ├── average_temperatures_over_time.png
- │   ├── average_temperatures.png
- │   ├── confusion_matrix.png
- │   ├── daily_temperature_metrics.png
- │   ├── LogReg_Coefficients.png
- │   ├── predicted_march_2025_values.png
- │   └── weather-variables_heatmap.png
- │
- ├── SCRIPTS/
- │   ├── arima_script.py
- │   ├── logistic_reg.py
- │   └── web_scraper.py
- │
- ├── LICENSE
- ├── README.md
- ├── requirements.txt
 <!-- Section 3: Instructions for Reproducing Results -->
 ## Section 3: Instructions for Reproducing Results
 Follow these steps to reproduce our results:
