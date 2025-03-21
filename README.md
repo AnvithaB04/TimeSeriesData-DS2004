@@ -37,30 +37,28 @@ pip install -r requirements.txt
 <!-- Section 2: Project Folder Structure -->
 ## Section 2: A Map of your documentation
 
-TIMESERIESDATA-DS2004/
-├── DATA/
-│   ├── charlottesville_weather.csv
-│   ├── cleaned_charlottesville_weather.csv
-│   └── merged_charlottesville_weather.csv
-│
-├── OUTPUT/
-│   ├── DatasetGraphics/
-│   │    ├── daily_temperature_metrics.png
-│   │    └── weather-variables_heatmap.png
-│   └── Results/
-│   │   ├── average_temperatures_over_time.png
-│   │   ├── average_temperatures.png
-│   │   ├── confusion_matrix.png
-│   │   ├── log_reg_coefficients.png
-│   │   └── predicted_march_2025_values.png
-├── SCRIPTS/
-│   ├── arima_script.py
-│   ├── logistic_reg.py
-│   └── web_scraper.py
-│
-├── LICENSE
-├── README.md
-└── requirements.txt
+TIMESERIESDATA-DS2004/  
+├── DATA/  
+│   ├── charlottesville_weather.csv  
+│   ├── cleaned_charlottesville_weather.csv  
+│   └── merged_charlottesville_weather.csv  
+├── OUTPUT/  
+│   ├── DatasetGraphics/  
+│   │    ├── daily_temperature_metrics.png  
+│   │    └── weather-variables_heatmap.png  
+│   └── Results/   
+│   │   ├── average_temperatures_over_time.png  
+│   │   ├── average_temperatures.png  
+│   │   ├── confusion_matrix.png  
+│   │   ├── log_reg_coefficients.png  
+│   │   └── predicted_march_2025_values.png  
+├── SCRIPTS/    
+│   ├── arima_script.py  
+│   ├── logistic_reg.py  
+│   └── web_scraper.py  
+├── LICENSE  
+├── README.md  
+└── requirements.txt  
 
 <!-- Section 3: Instructions for Reproducing Results -->
 ## Section 3: Instructions for Reproducing Results
