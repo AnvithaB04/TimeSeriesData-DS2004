@@ -39,6 +39,7 @@ pip install -r requirements.txt
 
 TIMESERIESDATA-DS2004/  
 ├── DATA/  
+│   ├── DATAAPPENDIX.pdf  
 │   ├── charlottesville_weather.csv  
 │   ├── cleaned_charlottesville_weather.csv  
 │   └── merged_charlottesville_weather.csv  
